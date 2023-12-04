@@ -19,11 +19,11 @@
 #define Z_STEP_LEFT          4
 #define Z_DIR_LEFT          16
 
-#define TURRET_STEP         17
-#define TURRET_DIR          19
+#define Z_STEP_RIGHT        17
+#define Z_DIR_RIGHT         5
 
 #define Z_STEP_RIGHT        18
-#define Z_DIR_RIGHT          5
+#define Z_DIR_RIGHT         19
 
 #define PLATTER_STEP        15
 #define PLATTER_DIR          2
@@ -74,27 +74,34 @@ class MuncherIO
 		
 		#ifdef ESP_A
 
-			//Z Height
-			void calibrateZ();
+			/////////////////////////////////////////////////////////////////////////////
+			////////////////////////      Z Height Steppers      ////////////////////////
+			/////////////////////////////////////////////////////////////////////////////
+			calibrateZ();
 
-			void setHeightZ(unsigned short height);
+			//0 is top of 
+			setHeightZ(unsigned short height);
 			unsigned short getHeightZ();
 
-			setSpeedZ(unsigned short height);
+			setSpeedZ(unsigned short speed);
 			unsigned short getSpeedZ();
 
 			bool getZLimit();
 
-			//Drill 
-			setDrillSpeed();
-			getDrillSpeed();
+			/////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////      Drill      //////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////
+			//Positive value for forward, negative for backwards
+			setDrillSpeed(int speed);
+			int getDrillSpeed();
 
-			//Platter
-			getPlatterPosition();
-			setPlatterPosition();
+			/////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////      Platter      /////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////
+			setPlatterPosition(unsigned short position);
+			unsigned short getPlatterPosition();
 
-
-			getPlatterLimit();
+			bool getPlatterLimit();
 
 
 		#endif
