@@ -19,8 +19,8 @@
 #define Z_STEP_LEFT          4
 #define Z_DIR_LEFT          16
 
-#define Z_STEP_RIGHT        17
-#define Z_DIR_RIGHT         19
+#define TURRET_STEP         17
+#define TURRET_DIR          19
 
 #define Z_STEP_RIGHT        18
 #define Z_DIR_RIGHT          5
@@ -75,15 +75,15 @@ class MuncherIO
 		#ifdef ESP_A
 
 			//Z Height
-			calibrateZ();
+			void calibrateZ();
 
-			setHeightZ();
-			getHeightZ();
+			void setHeightZ(unsigned short height);
+			unsigned short getHeightZ();
 
-			setSpeedZ();
-			getSpeedZ();
+			setSpeedZ(unsigned short height);
+			unsigned short getSpeedZ();
 
-			getZLimit();
+			bool getZLimit();
 
 			//Drill 
 			setDrillSpeed();
