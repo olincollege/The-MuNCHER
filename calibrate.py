@@ -37,16 +37,20 @@ def calibrate(images):
         if flag == True:
             objpoints.append(object_points) # append the *same* obj points to the list at same index as imgpoints
             imgpoints.append(np.float32(corners)) 
-    
-
 
     ret, camera_matrix, distortion_coeffs, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
     return ret, camera_matrix, distortion_coeffs # these are ... 
 
+def save_params(ret, camera_matrix, distortion_coefs):
+    with open('camera_calibration_params.npy', 'wb') as f:
+        np.save(f, ret)
+        np.save(f, camera_matrix)
+        np.save(f, distortion_coefs)
 
 # Function calling
 images_for_calibration = retrieve_images('/Users/zaynpatel/Downloads/PIEPhotos')
 ret, cam_matrix, distort_coefs = calibrate(images_for_calibration)
-print(f'this is ret {ret}')
-print(f'this is the camera matrix {cam_matrix}')
-print(f'this is the distort coefficient {distort_coefs}')
+saving_params = save_params(ret, cam_matrix, distort_coefs)
+#print(f'this is ret {ret}')
+#print(f'this is the camera matrix {cam_matrix}')
+#print(f'this is the distort coefficient {distort_coefs}')

@@ -411,7 +411,11 @@ image of type numpy.uint8.'''
 
     def detection_pose(self, detection, camera_params, tag_size=1, z_sign=1):
 
-        fx, fy, cx, cy = [ ctypes.c_double(c) for c in camera_params ]
+        #fx, fy, cx, cy = [ ctypes.c_double(c) for c in camera_params ]
+        fx = ctypes.c_double(camera_params[0])
+        fy = ctypes.c_double(camera_params[1])
+        cx = ctypes.c_double(camera_params[2])
+        cy = ctypes.c_double(camera_params[3])
         
         H = self.libc.matd_create(3, 3)
         arr = _matd_get_array(H)
