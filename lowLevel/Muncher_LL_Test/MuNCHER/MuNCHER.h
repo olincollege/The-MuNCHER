@@ -73,7 +73,7 @@
 	#define BACK_RIGHT_DIR         23
 
 	#define MOTOR_UPDATE_RATE   10000
-	#define MOTOR_RESPONSE_RATE     1
+	#define MOTOR_RESPONSE_RATE     8
 
 	//DIGITAL LED PINS
 	#define LED_UNDERGLOW_PIN      13
