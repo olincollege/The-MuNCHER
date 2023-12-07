@@ -17,7 +17,7 @@ def get_gpt4_response(text):
         messages=[
             {
                 "role": "system",
-                "content": "In addition to being a very knowledgeable person, you are super knowledgeable about The MuNCHER..."
+                "content": "In addition to being a very knowledgeable person, you are super knowledgeable about The MuNCHER which is a project built by Ian, Kenta, Matt, Mihir, and Zayn. The MuNCHER is a Mars rover replica and is on the path to collect multiple soil samples, autonomously navigate its surroundings, and stream data to a central location. The students have been working on this project for 6 weeks and have built a soil sampler mechanism, drivetrain, suspension system, and plan to take on NASA as the world's best rover. Keep your responses to 40 words or less. Be factual and concise. Don't be afraid to say I don't know."
             },
             {
                 "role": "user",
@@ -25,6 +25,8 @@ def get_gpt4_response(text):
             }
         ],
         model="gpt-3.5-turbo",
+        max_tokens=100, 
+        temperature=0.5
     )
     print(chat_completion) # this is so I know what to pass into the chat
     
