@@ -416,11 +416,11 @@
 
 
 		void MuncherIO::setFrontLeftSpeed(short speed) {
-			digitalWrite(FRONT_LEFT_DIR, speed > 0);
+			digitalWrite(FRONT_LEFT_DIR, speed < 0);
 			analogWrite(FRONT_LEFT_PWM, abs(speed));
 		}
 		void MuncherIO::setFrontRightSpeed(short speed) {
-			digitalWrite(FRONT_RIGHT_DIR, speed > 0);
+			digitalWrite(FRONT_RIGHT_DIR, speed < 0);
 			analogWrite(FRONT_RIGHT_PWM, abs(speed));
 		}
 		void MuncherIO::setBackLeftSpeed(short speed) {
@@ -439,8 +439,8 @@
 	    	short right  = speed / 6 + (((long)speed * 3) * (180 - abs(turnAngle)) / 180 * (turnAngle > 0)) / 6 + (long)speed * 5 / 6 * (turnAngle <= 0);		
 
 			_frontLeftSpeed  = left;
-			_backLeftSpeed   = left;
-			_frontRightSpeed = right;
+			_backLeftSpeed   = right;
+			_frontRightSpeed = left;
 			_backRightSpeed  = right;		
 		}
 
@@ -487,7 +487,6 @@
 		uint8_t commandElementsParsed = 0;
 
 		int outputVal[4]  = {0,0,0,0};
-
 
 		while(true) {
 
