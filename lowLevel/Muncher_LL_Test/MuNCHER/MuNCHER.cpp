@@ -513,6 +513,8 @@
 				inputBuffer = inputBuffer + String(char(Serial.read()));
 			}
 
+			// Serial.println(inputBuffer);
+
 			//There is a whole and valid serial command in the buffer 
 			if(inputBuffer.charAt(0) == 'a' && inputBuffer.charAt(inputBuffer.length()-2) == 'a') {
 				
