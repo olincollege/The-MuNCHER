@@ -89,7 +89,7 @@
 	#define COUNTER_CLOCKWISE   false
 
 
-	#define SERIAL_TIMEOUT     2000000
+	#define SERIAL_TIMEOUT    1000000
 
 	#include "Arduino.h"
 	#include "esp_timer.h"
