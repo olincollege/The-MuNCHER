@@ -14,6 +14,7 @@ camera_params = [camera_matrix[0, 0], camera_matrix[1, 1], camera_matrix[0, 2], 
 tag_size = 0.165 # this is the apriltag size
 
 vid = cv2.VideoCapture(0)
+vid.set(cv2.CAP_PROP_FPS, 30) # adjust frame rate for lower latency
 
 options = apriltag.DetectorOptions(families="tag36h11")
 detector = apriltag.Detector(options)
@@ -26,6 +27,8 @@ while (True):
     if not ret:
         print("Failed to capture image")
         break
+    
+    frame = cv2.flip(frame, -1) # flip camera to adjust for problems with how it's mounted on rover
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) 
 
     results = detector.detect(gray)
