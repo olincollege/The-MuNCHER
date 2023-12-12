@@ -25,7 +25,7 @@ def get_gpt4_response(text):
             }
         ],
         model="gpt-3.5-turbo",
-        max_tokens=100, 
+        max_tokens=200, 
         temperature=0.5
     )
     print(chat_completion) # this is so I know what to pass into the chat
