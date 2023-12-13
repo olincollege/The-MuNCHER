@@ -4,6 +4,17 @@ import numpy as np
 import os
 from tts import get_gpt4_response
 
+# Add audio feedback since I realized we're going to run this headless so the user will need a way to know when the code is listening/not
+# MHz/sec, how long wave, how many samples per duration
+def give_audio_feedback(frequency=1000, duration=0.1, sample_rate=44100):
+    # .arange() returns evenly spaced values for a given region
+    samples = np.arange(duration * sample_rate)
+    wave = 10000 * np.sin(2 * np.pi * frequency * samples / sample_rate)
+    # convert to 16-bit audio
+    wave = wave.astype(np.int16)
+    sd.play(wave, sample_rate)
+    sd.wait()
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/zaynpatel/muncher/The-MuNCHER/credentialsGCloud.json"
 
 # Initialize the client
@@ -29,6 +40,8 @@ streaming_config = speech.StreamingRecognitionConfig(
 def capture_and_transcribe():
     # Capture audio
     print("Listening...")
+    give_audio_feedback() # pass function w/out args b/c of kwargs in definition
+
     audio_data = sd.rec(
         int(sample_rate * duration),
         samplerate=sample_rate,
