@@ -1,0 +1,24 @@
+{
+  "name": "muncher",
+  "version": "1.0.0",
+  "description": "An Exploratory Rover",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package": "electron-packager ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaynpatel/the_muncher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaynpatel/the_muncher/issues"
+  },
+  "homepage": "https://github.com/zaynpatel/the_muncher#readme",
+  "devDependencies": {
+    "electron": "^27.0.4"
+  }
+}

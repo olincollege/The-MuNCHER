@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+<!-- 		<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline'"> -->
+
+		<link rel="stylesheet" type="text/css" href="index.css" />
+		<script src="OpenLayers.js"></script>
+		<script src="app.js"></script>
+		
+	</head>
+	<!-- <body onload="beginStuff();"> -->
+		<body onload="init();">
+		<div class="topNav">
+			<div class="topNavConnectionStatus">Robot Status: <span id="topNavConnectionIndicator" class="topNavConnectionIndicator">Disconnected</span></div>
+		</div>
+		<div class="mainWindow">
+
+			<h1 class="titles">MuNCHER Control Console</h1>
+
+			<div class="grid">
+				<div class = "common-grid status-grid">
+					<div class = "header-grid">Robot Status</div>
+					<div class = "suit-netStats">
+						<div class = "home-connection-grid" id="home-connection-grid">Disconnected</div>
+						<div class="settings-body-grid settings-text-grid">Robot IP: <span id="settings-ip-grid" class="setting-span-grid"></span></div>
+						<div class="settings-body-grid settings-text-grid">Battery Voltage: <span id="settings-voltage-grid" class="setting-span-grid">0.0</span></div>
+					</div>
+				</div>
+
+				<div class = "common-grid mode-grid">
+					<div class = "header-grid">Drive Mode</div>
+					<div class="vertCenter horizCenter">
+						<button class = "gridbutton" id="WASDMode"onclick="changeModeWASD()">WASD Drive</button>
+						<button class = "gridbutton" id="autoMode" onclick="changeModeAuto()">Tag Auto</button>
+						<button class = "gridbutton" id="RCMode" onclick="changeModeInf()">Inference</button>
+						<div style="height:4vh"></div>
+						<button class = "gridbutton autoStop" id="autoToggle" onclick="toggleAutoRun()">Auto Stopped</button>
+						<button id="loadAutoTrigger" class="gridbutton" onclick="loadAuto()">Load Auto Path</button>
+						<div id="recordingFilePath" class="recordingFilePathBox">No File Loaded</div>
+
+					</div>
+				</div>
+
+				<div class = "common-grid estop-grid">
+					<div class = "header-grid">E STOP</div>
+					<div class = "vertCenter horizCenter" style="height:100%;">
+						<button class = "gridbutton bigButton autoStop" id="autoMode" onclick="estop()">E STOP</button>
+					</div>
+				</div>
+
+				<div class = "common-grid light-grid">
+					<div class = "header-grid">Lights</div>
+					<div class = "vertCenter horizCenter" style="height:100%;">
+						<button class = "gridbutton bigButton" id="autoMode" onclick="lightToggle()">OFF</button>
+					</div>
+				</div>
+
+				<div class = "common-grid input-grid">
+					<div class = "header-grid">Sampler Controls</div>
+					<div class="samplerGrid">
+						<div class="samplerGrid-buttons horizCenter">
+							<button class = "gridbutton" id="autoMode" onclick="updateSoilSampler(1)">S1</button>
+							<button class = "gridbutton" id="WASDMode"onclick="updateSoilSampler(2)">S2</button>
+							<button class = "gridbutton" id="RCMode" onclick="updateSoilSampler(3)">S3</button>
+							<button class = "gridbutton" id="RCMode" onclick="updateSoilSampler(4)">S4</button>
+							<div style="height:4vh"></div>
+							<button class = "gridbutton" id="RCMode" onclick="updateSoilSampler(0)">Clear Sample</button>
+						</div>
+
+						<div class="samplerGrid-sim" style="height:100%">
+							<img src="sampler.png" style="width:150px"class="horizCenter vertCenter2"></img>
+						</div>
+					</div>
+				</div>
+
+				<div class="common-grid turret-grid"> 
+					<div class = "header-grid">Turret Controls</div>
+					<div class="turretGrid">
+						<div class="turretGrid-buttons vertCenter3">
+							<button class = "gridbutton" id="autoMode" onclick="tiltL()">Tilt Left</button>
+							<button class = "gridbutton" id="WASDMode"onclick="tiltR()">Tilt Right</button>
+							<button class = "gridbutton" id="RCMode" onclick="panL()">Pan Left</button>
+							<button class = "gridbutton" id="RCMode" onclick="panR()">Pan Right</button>
+							<div style="height:4vh"></div>
+							<button class = "gridbutton" id="RCMode" onclick="sample()">Shoot</button>
+							<button class = "gridbutton" id="RCMode" onclick="sample()">Lazer Off</button>
+						</div>
+						<div class="turretGrid-sim horizCenter">
+							<img src="turret.png" style="width:60%; height:calc(100% - 29px)" class="horizCenter vertCenter2"></img>
+						</div>
+					</div>
+				</div>
+
+				<div class="common-grid cam-grid"> 
+					<div class = "header-grid">Camera Feed</div>
+					<!-- <iframe style="width:100%; height:calc(100% - 29px)" src="http://192.168.16.99:5000/" title="W3Schools Free Online Web Tutorials"></iframe> -->
+				</div>
+
+				<div class="common-grid gps-grid"> 
+					<div class = "header-grid">GPS Location</div>
+					<div id="map" class="map"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
